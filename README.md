@@ -44,10 +44,11 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-5. Create a `.env` file in the root directory. Replace the API URL below with any LLM endpoint:
+5. Create a `.env` file in the root directory. Replace the API URL and model name below with your preferred LLM endpoint and model:
 
 ```plaintext
 LLM_API_URL=http://localhost:1234/v1/chat/completions
+LLM_MODEL_NAME=deepseek-r1-distill-qwen-7b
 ```
 
 ## Usage
@@ -124,7 +125,6 @@ Pull requests are welcome. For major changes, please open an issue to discuss wh
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
-```
+[MIT](https://choosealicense.com/licenses/mit/)```
 
 This updated README reflects the project's current focus on text processing rather than image processing. I've updated the title, description, features, usage instructions, and sample prompts to align with text processing capabilities. You may need to create a new banner image (textllm-banner.png) to replace the previous one.

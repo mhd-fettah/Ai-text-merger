@@ -175,5 +175,5 @@ cython_debug/
 
 # Ignore all files in input and output folders
 input/*
-!input/add your files here
+!input/add your txt files here
 output/*

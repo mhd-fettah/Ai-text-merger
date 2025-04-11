@@ -1,6 +1,7 @@
 import base64
 import logging
 import requests
+import os
 from data.prompt import get_prompt
 from data.config import LLM_API_URL
 
@@ -16,9 +17,12 @@ def send_to_lm_studio(text_path):
         # Log the text content for debugging
         logging.debug(f"Processing text file: {text_path.name}")
         
+        # Get model name from environment variable or use default
+        model_name = os.environ.get("LLM_MODEL_NAME")
+        
         # Modify payload to use text-only format
         payload = {
-            "model": "qwen2-vl-7b-instruct",  # You might need to use a text-only model here
+            "model": model_name,
             "messages": [
                 {
                     "role": "user",
