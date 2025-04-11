@@ -15,7 +15,8 @@ BASE_DIR = Path.cwd()
 # Use an environment variable for DATA_DIR if provided, otherwise default to BASE_DIR / "data"
 DATA_DIR = Path(os.getenv("DATA_DIR", BASE_DIR / "data"))
 INPUT_IMAGES_DIR = BASE_DIR / "input_images"
-OUTPUT_DIR = BASE_DIR / "output_responses"
+INPUT_DIR = BASE_DIR / "input"  # Updated directory name
+OUTPUT_DIR = BASE_DIR / "output"  # Updated directory name
+PROMPT_FILE = BASE_DIR / "prompt.txt"  # Updated to root directory
 LOG_FILE = BASE_DIR / "processing.log"
 SETTINGS_FILE = DATA_DIR / "settings.json"
-PROMPT_FILE = INPUT_IMAGES_DIR / "prompt.txt"

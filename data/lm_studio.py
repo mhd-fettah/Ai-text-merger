@@ -4,40 +4,42 @@ import requests
 from data.prompt import get_prompt
 from data.config import LLM_API_URL
 
-def send_to_lm_studio(image_path):
-    """Send image data to LM Studio API and return the response."""
+def send_to_lm_studio(text_path):
+    """Send text data to LM Studio API and return the response."""
     try:
-        # Read image and encode to base64.
-        with open(image_path, 'rb') as image_file:
-            image_data = base64.b64encode(image_file.read()).decode('utf-8')
+        # Read text content
+        with open(text_path, 'r', encoding='utf-8') as text_file:
+            text_content = text_file.read().strip()
         
         prompt = get_prompt()
         
+        # Log the text content for debugging
+        logging.debug(f"Processing text file: {text_path.name}")
+        
+        # Modify payload to use text-only format
         payload = {
-            "model": "qwen2-vl-7b-instruct",
+            "model": "qwen2-vl-7b-instruct",  # You might need to use a text-only model here
             "messages": [
                 {
                     "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/png;base64,{image_data}"
-                            }
-                        }
-                    ]
+                    "content": prompt + "\n\n" + text_content
                 }
             ],
             "temperature": 0.7
         }
         
-        # Add a timeout parameter to avoid hanging indefinitely.
-        response = requests.post(LLM_API_URL, json=payload, timeout=10)
+        # Log the payload for debugging
+        logging.debug(f"Sending payload: {payload}")
+        
+        # Add a timeout parameter to avoid hanging indefinitely
+        response = requests.post(LLM_API_URL, json=payload, timeout=30)
         response.raise_for_status()
         json_response = response.json()
         
-        # Validate the expected response structure.
+        # Log the response for debugging
+        logging.debug(f"Response status: {response.status_code}")
+        
+        # Validate the expected response structure
         choices = json_response.get('choices')
         if choices and isinstance(choices, list) and len(choices) > 0:
             return choices[0].get('message', {}).get('content')
@@ -46,6 +48,6 @@ def send_to_lm_studio(image_path):
             logging.error(error_msg)
             return None
     except Exception as e:
-        logging.exception("Error processing %s", image_path.name)
-        print(f"Error processing {image_path.name}: {str(e)}")
+        logging.exception(f"Error processing {text_path.name}")
+        print(f"Error processing {text_path.name}: {str(e)}")
         return None

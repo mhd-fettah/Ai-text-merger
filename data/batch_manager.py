@@ -1,11 +1,11 @@
 import logging
 from pathlib import Path
-from data.config import INPUT_IMAGES_DIR, OUTPUT_DIR, PROMPT_FILE
+from data.config import INPUT_DIR, OUTPUT_DIR, PROMPT_FILE  # Updated import to reflect new directory names
 
 def setup_batch_folders(batch_id):
     """Create batch-specific input and output folders and verify the prompt file."""
-    batch_input = INPUT_IMAGES_DIR / f"batch_{batch_id}"
-    batch_output = OUTPUT_DIR / f"batch_{batch_id}"
+    batch_input = INPUT_DIR / f"batch_{batch_id}"  # Updated directory name
+    batch_output = OUTPUT_DIR / f"batch_{batch_id}"  # Updated directory name
     
     try:
         batch_input.mkdir(parents=True, exist_ok=True)
