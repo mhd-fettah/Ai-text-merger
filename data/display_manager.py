@@ -19,9 +19,9 @@ def init_progress(total_TxtFiles):
     If the environment variable DISABLE_TQDM is set, returns a dummy progress object.
     """
     if os.getenv("DISABLE_TQDM", "false").lower() in ["true", "1", "yes"]:
-        return DummyTqdm(total=total_TxtFiles, desc="Starting...", unit="img")
+        return DummyTqdm(total=total_TxtFiles, desc="Starting...", unit="file")
     else:
-        return tqdm(total=total_TxtFiles, desc="Starting...", unit="img")
+        return tqdm(total=total_TxtFiles, desc="Starting...", unit="file")
 
 def update_description(pbar, TxtFile_name):
     """
