@@ -16,7 +16,7 @@ from data.batch_manager import setup_batch_folders
 from data.lm_studio import send_to_lm_studio
 from data.display_manager import init_progress, update_description, write_message, print_summary
 
-def process_images():
+def process_TxtFiles():
     """Main function to process all text files in the input directory."""
     try:
         # Load settings and set up batch folders
@@ -103,4 +103,4 @@ def process_images():
         print(error_msg)
 
 if __name__ == "__main__":
-    process_images()
+    process_TxtFiles()

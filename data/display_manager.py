@@ -13,21 +13,21 @@ class DummyTqdm:
     def write(self, message):
         print(message)
 
-def init_progress(total_images):
+def init_progress(total_TxtFiles):
     """
-    Initialize and return a tqdm progress bar with a given number of total images.
+    Initialize and return a tqdm progress bar with a given number of total TxtFiles.
     If the environment variable DISABLE_TQDM is set, returns a dummy progress object.
     """
     if os.getenv("DISABLE_TQDM", "false").lower() in ["true", "1", "yes"]:
-        return DummyTqdm(total=total_images, desc="Starting...", unit="img")
+        return DummyTqdm(total=total_TxtFiles, desc="Starting...", unit="img")
     else:
-        return tqdm(total=total_images, desc="Starting...", unit="img")
+        return tqdm(total=total_TxtFiles, desc="Starting...", unit="img")
 
-def update_description(pbar, image_name):
+def update_description(pbar, TxtFile_name):
     """
-    Update the progress bar's description with the image currently being processed.
+    Update the progress bar's description with the TxtFile currently being processed.
     """
-    pbar.set_description(f"Processing: {image_name}")
+    pbar.set_description(f"Processing: {TxtFile_name}")
 
 def write_message(pbar, message):
     """
@@ -35,16 +35,16 @@ def write_message(pbar, message):
     """
     pbar.write(message)
 
-def print_summary(batch_id, total_images, success_count, fail_count, total_time, avg_time):
+def print_summary(batch_id, total_TxtFiles, success_count, fail_count, total_time, avg_time):
     """
     Print a nicely formatted summary of the batch processing.
     """
     summary = (
         "\n=== Batch Processing Summary ===\n"
         f"Batch ID: {batch_id}\n"
-        f"Total images processed: {total_images}\n"
+        f"Total text files processed: {total_TxtFiles}\n"
         f"Successfully processed: {success_count}\n"
         f"Failed processing: {fail_count}\n"
-        f"Total time: {total_time:.2f} sec, Average per image: {avg_time:.2f} sec\n"
+        f"Total time: {total_time:.2f} sec, Average per text file: {avg_time:.2f} sec\n"
     )
     print(summary)

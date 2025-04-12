@@ -126,5 +126,3 @@ Pull requests are welcome. For major changes, please open an issue to discuss wh
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)```
-
-This updated README reflects the project's current focus on text processing rather than image processing. I've updated the title, description, features, usage instructions, and sample prompts to align with text processing capabilities. You may need to create a new banner image (textllm-banner.png) to replace the previous one.
